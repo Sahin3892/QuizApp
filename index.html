@@ -19,24 +19,36 @@
     ></script>
   </head>
   <body onload="init()">
- <!--  <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">QuizApp</span>
-      </div>
-    </nav>
---> 
+
     <div class="logo">
-    <img src="src/img/logo.png" alt="">
+      <img src="src/img/logo.png" alt="" />
     </div>
     <div class="container-card">
       <div class="card" style="width: 30rem">
-        <img src="src/img/question.jpg" class="card-img-top" alt="..." />
+        <img
+          src="src/img/question.jpg"
+          id="header-image"
+          class="card-img-top"
+          alt="..."
+        />
 
-        <div class="card-body" id="end-screen" style="display: none;">
-         <div class="text-center"> <b>Quizz beendet!</b>  
-         </div>
-         <div><img class="width-100" src="src/img/finish.jpg" alt=""></div>
-          <div class="text-center"> Du hast <b id="amount-of-right-questions">XXX</b> Fragen von <b id="amount-of-questions">XXX</b> Richtig beantwortet.</div>
+        <div class="progress">
+          <div id="progress-bar" class="progress-bar" style="width: 20%">
+            20%
+          </div>
+        </div>
+
+        <div class="card-body" id="end-screen" style="display: none">
+          <div class="text-center text-end-screen"><b>Quizz beendet!</b></div>
+
+          <div class="text-center">
+            Du hast <b id="amount-of-right-questions">XXX</b> Fragen von
+            <b id="amount-of-questions">XXX</b> Richtig beantwortet.
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" onclick="restartGame()">Erneut spielen</button>
+          </div>
         </div>
 
         <div class="card-body" id="question-body">
@@ -46,23 +58,41 @@
             <div class="card-body" id="answer_1">Antwort</div>
           </div>
 
-          <div class="card quiz-answer-card mb-2 quiz-answer-card" onclick="answer('answer_2')">
+          <div
+            class="card quiz-answer-card mb-2 quiz-answer-card"
+            onclick="answer('answer_2')"
+          >
             <div class="card-body" id="answer_2">Antwort</div>
           </div>
 
-          <div class="card quiz-answer-card mb-2 quiz-answer-card" onclick="answer('answer_3')">
+          <div
+            class="card quiz-answer-card mb-2 quiz-answer-card"
+            onclick="answer('answer_3')"
+          >
             <div class="card-body" id="answer_3">Antwort</div>
           </div>
 
-          <div class="card quiz-answer-card mb-2 quiz-answer-card" onclick="answer('answer_4')">
+          <div
+            class="card quiz-answer-card mb-2 quiz-answer-card"
+            onclick="answer('answer_4')"
+          >
             <div class="card-body" id="answer_4">Antwort</div>
           </div>
-          
-          <div class="question-footer">
-            <span><b id="current-question"> </b>von <b id="question-length"></b> Fragen </span>
-            <button id="next-button" class="btn btn-primary" disabled  onclick="nextQuestion()">Nächste Frage</button>
-          </div>
 
+          <div class="question-footer">
+            <span
+              ><b id="current-question"> </b>von
+              <b id="question-length"></b> Fragen
+            </span>
+            <button
+              id="next-button"
+              class="btn btn-primary"
+              disabled
+              onclick="nextQuestion()"
+            >
+              Nächste Frage
+            </button>
+          </div>
         </div>
       </div>
     </div>

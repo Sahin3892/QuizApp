@@ -46,32 +46,22 @@ let questions = [
 ];
 
 let rightQuestions = 0;
-
 let currentQuestion = 0;
+let Audio_Success = new Audio("src/sounds/correct_answer.mp3");
+let Audio_Fail = new Audio("src/sounds/wrong_answer.mp3");
+let Audio_Finish = new Audio("src/sounds/Finish.mp3");
 
 function init() {
   document.getElementById("question-length").innerHTML = questions.length;
+
   showQuestion();
 }
 
 function showQuestion() {
   if (currentQuestion >= questions.length) {
-    document.getElementById("end-screen").style = "";
-    document.getElementById("question-body").style = `display: none`;
-
-    document.getElementById("amount-of-questions").innerHTML = questions.length;
-    document.getElementById("amount-of-right-questions").innerHTML =
-      rightQuestions;
+    showEndScreen();
   } else {
-    let question = questions[currentQuestion];
-
-    document.getElementById("current-question").innerHTML =
-      currentQuestion + 1 + " ";
-    document.getElementById("questiontext").innerHTML = question["question"];
-    document.getElementById("answer_1").innerHTML = question["answer_1"];
-    document.getElementById("answer_2").innerHTML = question["answer_2"];
-    document.getElementById("answer_3").innerHTML = question["answer_3"];
-    document.getElementById("answer_4").innerHTML = question["answer_4"];
+    updateToNextQuestion();
   }
 }
 
@@ -85,6 +75,7 @@ function answer(selection) {
     document.getElementById(selection).parentNode.classList.add("bg-success");
     // after every Correct answer the array get +1
     if (rightQuestions <= questions.length) {
+      Audio_Success.play();
       ++rightQuestions;
     }
   } else {
@@ -92,6 +83,7 @@ function answer(selection) {
     document
       .getElementById(idOfRightAnswer)
       .parentNode.classList.add("bg-success");
+    Audio_Fail.play();
   }
   document.getElementById("next-button").disabled = false;
 }
@@ -115,4 +107,38 @@ function resetAnswer() {
   document.getElementById("answer_3").parentNode.classList.remove("bg-success");
   document.getElementById("answer_4").parentNode.classList.remove("bg-danger");
   document.getElementById("answer_4").parentNode.classList.remove("bg-success");
+}
+
+function showEndScreen() {
+  document.getElementById("end-screen").style = "";
+  document.getElementById("question-body").style = `display: none`;
+  document.getElementById("amount-of-questions").innerHTML = questions.length;
+  document.getElementById("amount-of-right-questions").innerHTML =
+    rightQuestions;
+  document.getElementById("header-image").src = "src/img/finish.jpg";
+}
+
+function updateToNextQuestion() {
+  updateProgressBar();
+  let question = questions[currentQuestion];
+
+  document.getElementById("current-question").innerHTML =
+    currentQuestion + 1 + " ";
+  document.getElementById("questiontext").innerHTML = question["question"];
+  document.getElementById("answer_1").innerHTML = question["answer_1"];
+  document.getElementById("answer_2").innerHTML = question["answer_2"];
+  document.getElementById("answer_3").innerHTML = question["answer_3"];
+  document.getElementById("answer_4").innerHTML = question["answer_4"];
+}
+
+function updateProgressBar() {
+  let percent = (currentQuestion + 1) / questions.length;
+  percent = percent * 100;
+  document.getElementById("progress-bar").innerHTML = `${percent} % `;
+  document.getElementById("progress-bar").style = `width: ${percent}%; `;
+}
+
+// Restarts the Game
+function restartGame() {
+  location.reload();
 }
