@@ -1,10 +1,17 @@
 body {
   margin: 0;
+  background-color: #f4f0e5 !important;
 }
 
 .container-card {
-  min-height: 100vh;
-  background-color: #007aff !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-content {
+  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,12 +51,43 @@ body {
 }
 
 .button-row {
-    display: flex;
-    justify-content: center;
-    margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
 }
 
-@media screen and (max-width: 800px) {
+.navbar {
+  width: 160px;
+  background-color: #007aff;
+  display: flex;
+  flex-direction: column;
+}
 
+.container-navbar {
+  display: flex;
+}
+
+.list-group-item {
+  background-color: #007aff !important;
+  color: white !important;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media screen and (max-width: 630px) {
+  .container-navbar {
+    display: flex;
+    flex-direction: column;
   }
-  
+
+  .navbar {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .container-navbar {
+    width: 80%;
+    height: 80vh;
+  }
+}

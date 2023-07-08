@@ -2,7 +2,7 @@ let questions = [
   {
     question: "Was ist eine Schleife in der Programmierung?",
     answer_1: "Ein Fehler in einem Programm.",
-    answer_2: "Ein Block von Code, der einmal ausgeführt wird.",
+    answer_2: "Ein Block von Code, der mehrmals ausgeführt wird.",
     answer_3: "Eine Möglichkeit, um Benutzereingaben zu verarbeiten.",
     answer_4: "Eine Datenstruktur zur Speicherung von Werten.",
     right_answer: 2,
@@ -80,9 +80,6 @@ function answer(selection) {
     }
   } else {
     document.getElementById(selection).parentNode.classList.add("bg-danger");
-    document
-      .getElementById(idOfRightAnswer)
-      .parentNode.classList.add("bg-success");
     Audio_Fail.play();
   }
   document.getElementById("next-button").disabled = false;
@@ -125,10 +122,10 @@ function updateToNextQuestion() {
   document.getElementById("current-question").innerHTML =
     currentQuestion + 1 + " ";
   document.getElementById("questiontext").innerHTML = question["question"];
-  document.getElementById("answer_1").innerHTML = question["answer_1"];
-  document.getElementById("answer_2").innerHTML = question["answer_2"];
-  document.getElementById("answer_3").innerHTML = question["answer_3"];
-  document.getElementById("answer_4").innerHTML = question["answer_4"];
+  document.getElementById("answer_1").innerHTML = "<b>A: </b> " + question["answer_1"];
+  document.getElementById("answer_2").innerHTML = "<b>B: </b> " + question["answer_2"];
+  document.getElementById("answer_3").innerHTML = "<b>C: </b> " + question["answer_3"];
+  document.getElementById("answer_4").innerHTML = "<b>D: </b> " + question["answer_4"];
 }
 
 function updateProgressBar() {
@@ -137,6 +134,12 @@ function updateProgressBar() {
   document.getElementById("progress-bar").innerHTML = `${percent} % `;
   document.getElementById("progress-bar").style = `width: ${percent}%; `;
 }
+
+function toggleNavbar() {
+  var navbar = document.getElementById("navbar-collapse");
+  navbar.classList.toggle("hide");
+}
+
 
 // Restarts the Game
 function restartGame() {
